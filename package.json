@@ -1,0 +1,19 @@
+{
+  "name": "presensi_karyawan",
+  "version": "1.0.0",
+  "description": "Sistem Presensi Karyawan dengan Node.js dan Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Nama Anda",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "sqlite3": "^5.1.7"
+  }
+}

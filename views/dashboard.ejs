@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h2>Welcome to Your Dashboard</h2>
+    <p><a href="/logout">Logout</a></p>
+    <% if (presensi) { %>
+        <p>Clock In: <%= new Date(presensi.clock_in).toLocaleString() %>
+        </p>
+        <% if (presensi.clock_out) { %>
+            <p>Clock Out: <%= new Date(presensi.clock_out).toLocaleString() %>
+            </p>
+            <p>Durasi:
+                <% const inTime=new Date(presensi.clock_in); const outTime=new Date(presensi.clock_out); const
+                    duration=(outTime - inTime) / 1000 / 60; // minutes %>
+                    <%= duration %> menit
+            </p>
+            <% } else { %>
+                <form method="POST" action="/clock_out">
+                    <button type="submit">Clock Out</button>
+                </form>
+                <% } %>
+                    <% } else { %>
+                        <form method="POST" action="/clock_in">
+                            <button type="submit">Clock In</button>
+                        </form>
+                        <% } %>
+</body>
+
+</html>

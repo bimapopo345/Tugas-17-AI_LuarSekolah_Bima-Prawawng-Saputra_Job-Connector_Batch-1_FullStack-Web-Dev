@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h2>Admin Dashboard</h2>
+    <p><a href="/logout">Logout</a></p>
+    <p><a href="/admin/add">Add New User</a></p>
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Clock In</th>
+            <th>Clock Out</th>
+            <th>Durasi</th>
+            <th>Actions</th>
+        </tr>
+        <% presensi.forEach(function(record) { %>
+            <tr>
+                <td>
+                    <%= record.username %>
+                </td>
+                <td>
+                    <%= new Date(record.clock_in).toLocaleString() %>
+                </td>
+                <td>
+                    <%= record.clock_out ? new Date(record.clock_out).toLocaleString() : '---' %>
+                </td>
+                <td>
+                    <% if (record.clock_out) { const inTime=new Date(record.clock_in); const outTime=new
+                        Date(record.clock_out); const duration=Math.floor((outTime - inTime) / (1000 * 60)); // minutes
+                        const hours=Math.floor(duration / 60); const minutes=duration % 60; %>
+                        <%= hours %> jam <%= minutes %> menit
+                                <% } else { %>
+                                    ---
+                                    <% } %>
+                </td>
+                <td><a href="/admin/edit/<%= record.id %>">Edit</a></td>
+            </tr>
+            <% }) %>
+    </table>
+</body>
+
+</html>
